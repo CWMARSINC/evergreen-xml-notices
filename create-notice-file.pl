@@ -40,6 +40,7 @@ my $core_type;
 my $usr_field; # typically 'usr', sometimes 'id'
 my $output_dir;
 my $for_email;
+my $for_text;
 my $notice_type;
 my $notify_interval;
 my $force;
@@ -126,6 +127,11 @@ Options:
 
     --for-email
         If set, the script will confirm each patron has an email address
+        before adding to the XML file.  Also, the XML content will not
+        include patron address information, since it's not needed.
+
+   --for-text
+        If set, the script will confirm each patron has a text number
         before adding to the XML file.  Also, the XML content will not
         include patron address information, since it's not needed.
 
@@ -349,6 +355,15 @@ sub collect_user_and_targets {
         announce('info',
             "Skipping email notice for lack of email. patron=$user_id");
         return 0;
+    }
+
+    if ($for_text) {
+        my $set = $e->search_actor_user_setting({
+            usr => $user_id, name => 'opac.default_sms_notify'})->[0];
+
+        my $text_number = OpenSRF::Utils::JSON->JSON2perl($set->value) if $set;
+
+        $ctx->{text_number} = $text_number || '';
     }
 
     if ($core_type eq 'circ') { # CIRCULATIONS
