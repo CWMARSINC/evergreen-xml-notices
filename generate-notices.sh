@@ -35,6 +35,7 @@ FORCE_GENERATE_XML=""
 SEND_XML=""
 GRANULARITY=""
 FOR_EMAIL=""
+FOR_TEXT=""
 EVENT_DEF=""
 NOTICE_TAG=""
 NOTICE_TYPE=""
@@ -129,6 +130,7 @@ export NOTIFY_INTERVAL
 export PROCESS_HOOKS
 export CUSTOM_FILTERS
 export FOR_EMAIL
+export FOR_TEXT
 
 case $GRANULARITY in
 
@@ -243,7 +245,7 @@ case $GRANULARITY in
         export EVENT_DEF=528
         export NOTICE_TAG="holds-available-sms"
         export NOTICE_TYPE="hold available"
-        export FOR_EMAIL="--for-text"
+        export FOR_TEXT="--for-text"
         ;;
 
     *)
