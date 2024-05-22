@@ -513,6 +513,7 @@ GetOptions(
     'event-tag=s'       => \$event_tag,
     'output-dir=s'      => \$output_dir,
     'for-email'         => \$for_email,
+    'for-text'          => \$for_text,
     'notice-type=s'     => \$notice_type,
     'notify-interval=s' => \$notify_interval,
     'force'             => \$force,
