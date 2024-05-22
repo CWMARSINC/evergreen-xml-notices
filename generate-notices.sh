@@ -132,111 +132,118 @@ export FOR_EMAIL
 
 case $GRANULARITY in
 
-    'Checkout-Locker-Email')
-        export FOR_EMAIL="--for-email"
-        export EVENT_DEF=232
-        export NOTICE_TAG=checkout-locker-email
-        export NOTICE_TYPE="checkout locker"
-        ;;
+    # 'Checkout-Locker-Email')
+    #     export FOR_EMAIL="--for-email"
+    #     export EVENT_DEF=232
+    #     export NOTICE_TAG=checkout-locker-email
+    #     export NOTICE_TYPE="checkout locker"
+    #     ;;
 
-    'Hold-Ready-Locker-Email')
-        export FOR_EMAIL="--for-email"
-        export EVENT_DEF=221
-        export NOTICE_TAG=hold-ready-locker-email
-        export NOTICE_TYPE="hold ready locker email"
-        ;;
+    # 'Hold-Ready-Locker-Email')
+    #     export FOR_EMAIL="--for-email"
+    #     export EVENT_DEF=221
+    #     export NOTICE_TAG=hold-ready-locker-email
+    #     export NOTICE_TYPE="hold ready locker email"
+    #     ;;
 
-    'Hold-Ready-Locker-Phone')
-        export EVENT_DEF=222
-        export NOTICE_TAG=hold-ready-locker-phone
-        export NOTICE_TYPE="hold ready locker phone"
-        ;;
+    # 'Hold-Ready-Locker-Phone')
+    #     export EVENT_DEF=222
+    #     export NOTICE_TAG=hold-ready-locker-phone
+    #     export NOTICE_TYPE="hold ready locker phone"
+    #     ;;
 
-    'Hold-Ready-Email')
-        export FOR_EMAIL="--for-email"
-        export EVENT_DEF=234
-        export NOTICE_TAG=hold-ready-email
-        export NOTICE_TYPE="hold ready email"
-        ;;
+    # 'Hold-Ready-Email')
+    #     export FOR_EMAIL="--for-email"
+    #     export EVENT_DEF=234
+    #     export NOTICE_TAG=hold-ready-email
+    #     export NOTICE_TYPE="hold ready email"
+    #     ;;
 
-    'Checkout-Email')
-        export FOR_EMAIL="--for-email"
-        export EVENT_DEF=231
-        export NOTICE_TAG=checkout-email
-        export NOTICE_TYPE="checkout"
-        ;;
+    # 'Checkout-Email')
+    #     export FOR_EMAIL="--for-email"
+    #     export EVENT_DEF=231
+    #     export NOTICE_TAG=checkout-email
+    #     export NOTICE_TYPE="checkout"
+    #     ;;
 
-    'Hold-Shelf-Expire-Email')
-        export FOR_EMAIL="--for-email"
-        export EVENT_DEF=233
-        export NOTICE_TAG=hold-shelf-expire
-        export NOTICE_TYPE="hold shelf expire email"
-        ;;
+    # 'Hold-Shelf-Expire-Email')
+    #     export FOR_EMAIL="--for-email"
+    #     export EVENT_DEF=233
+    #     export NOTICE_TAG=hold-shelf-expire
+    #     export NOTICE_TYPE="hold shelf expire email"
+    #     ;;
 
-    'Daily-Export-Hold-Cancel')
-        export EVENT_DEF=220
-        export NOTICE_TAG=hold-cancel-email
-        export NOTICE_TYPE="hold canceled"
-        ;;
+    # 'Daily-Export-Hold-Cancel')
+    #     export EVENT_DEF=220
+    #     export NOTICE_TAG=hold-cancel-email
+    #     export NOTICE_TYPE="hold canceled"
+    #     ;;
 
-    'Daily-Export-Billing-Outreach-Print')
-        export EVENT_DEF=230
-        export NOTICE_TAG="collection-outreach"
-        export NOTICE_TYPE="collections"
-        ;;
+    # 'Daily-Export-Billing-Outreach-Print')
+    #     export EVENT_DEF=230
+    #     export NOTICE_TAG="collection-outreach"
+    #     export NOTICE_TYPE="collections"
+    #     ;;
 
-    'Daily-Export-OD-90-Print')
-        export EVENT_DEF=229
-        export NOTICE_TAG="90-day-overdue-print"
-        export NOTICE_TYPE="overdue"
-        export NOTIFY_INTERVAL="90 days"
-        export PROCESS_HOOKS="--process-hooks"
-        export CUSTOM_FILTERS="--custom-filters $AT_FILTERS/a_t_filters.outreach_od.json"
-        ;;
+    # 'Daily-Export-OD-90-Print')
+    #     export EVENT_DEF=229
+    #     export NOTICE_TAG="90-day-overdue-print"
+    #     export NOTICE_TYPE="overdue"
+    #     export NOTIFY_INTERVAL="90 days"
+    #     export PROCESS_HOOKS="--process-hooks"
+    #     export CUSTOM_FILTERS="--custom-filters $AT_FILTERS/a_t_filters.outreach_od.json"
+    #     ;;
 
-    'Daily-Export-OD-60-Print')
-        export EVENT_DEF=228
-        export NOTICE_TAG="60-day-overdue-print"
-        export NOTICE_TYPE="overdue"
-        export NOTIFY_INTERVAL="60 days"
-        export PROCESS_HOOKS="--process-hooks"
-        export CUSTOM_FILTERS="--custom-filters $AT_FILTERS/a_t_filters.outreach_od.json"
-        ;;
+    # 'Daily-Export-OD-60-Print')
+    #     export EVENT_DEF=228
+    #     export NOTICE_TAG="60-day-overdue-print"
+    #     export NOTICE_TYPE="overdue"
+    #     export NOTIFY_INTERVAL="60 days"
+    #     export PROCESS_HOOKS="--process-hooks"
+    #     export CUSTOM_FILTERS="--custom-filters $AT_FILTERS/a_t_filters.outreach_od.json"
+    #     ;;
     
-    'Daily-Export-Ecard-Print')
-        export EVENT_DEF=227
-        export NOTICE_TAG="ecard"
-        export NOTICE_TYPE="ecard"
-        ;;
+    # 'Daily-Export-Ecard-Print')
+    #     export EVENT_DEF=227
+    #     export NOTICE_TAG="ecard"
+    #     export NOTICE_TYPE="ecard"
+    #     ;;
 
-    'Daily-Export-Billing-Print')
-        export EVENT_DEF=226
-        export NOTICE_TAG="collection"
-        export NOTICE_TYPE="collections"
-        ;;
+    # 'Daily-Export-Billing-Print')
+    #     export EVENT_DEF=226
+    #     export NOTICE_TAG="collection"
+    #     export NOTICE_TYPE="collections"
+    #     ;;
 
-    'Daily-Export-OD-7-Print')
-        export EVENT_DEF=223
-        export NOTICE_TAG="7-day-overdue-print"
-        export NOTICE_TYPE="overdue"
-        export NOTIFY_INTERVAL="7 days"
-        export PROCESS_HOOKS="--process-hooks"
-        export CUSTOM_FILTERS="--custom-filters $AT_FILTERS/a_t_filters.7_day_od.json"
-        ;;
+    # 'Daily-Export-OD-7-Print')
+    #     export EVENT_DEF=223
+    #     export NOTICE_TAG="7-day-overdue-print"
+    #     export NOTICE_TYPE="overdue"
+    #     export NOTIFY_INTERVAL="7 days"
+    #     export PROCESS_HOOKS="--process-hooks"
+    #     export CUSTOM_FILTERS="--custom-filters $AT_FILTERS/a_t_filters.7_day_od.json"
+    #     ;;
     
-    'Daily-Export-OD2-14-Print')
-        export EVENT_DEF=224
-        export NOTICE_TAG="14-day-second-overdue-print"
-        export NOTICE_TYPE="overdue"
-        export NOTIFY_INTERVAL="14 days second"
-        export PROCESS_HOOKS="--process-hooks"
-        export CUSTOM_FILTERS="--custom-filters $AT_FILTERS/a_t_filters.14_day_second_od.json"
-        ;;
+    # 'Daily-Export-OD2-14-Print')
+    #     export EVENT_DEF=224
+    #     export NOTICE_TAG="14-day-second-overdue-print"
+    #     export NOTICE_TYPE="overdue"
+    #     export NOTIFY_INTERVAL="14 days second"
+    #     export PROCESS_HOOKS="--process-hooks"
+    #     export CUSTOM_FILTERS="--custom-filters $AT_FILTERS/a_t_filters.14_day_second_od.json"
+    #     ;;
 
-    'Daily-Export-Hold-Ready-Print')
-        export EVENT_DEF=225
-        export NOTICE_TAG="holds-available-print"
+    # 'Daily-Export-Hold-Ready-Print')
+    #     export EVENT_DEF=225
+    #     export NOTICE_TAG="holds-available-print"
+    #     export NOTICE_TYPE="hold available"
+    #     ;;
+
+    'hold-ready-ums')
+        export EVENT_DEF=528
+        export NOTICE_TAG="holds-available-sms"
         export NOTICE_TYPE="hold available"
+        export FOR_EMAIL="--for-text"
         ;;
 
     *)
