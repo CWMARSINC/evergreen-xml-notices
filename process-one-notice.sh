@@ -61,7 +61,7 @@ if [ -z "$NO_GENERATE_XML" -o "$FORCE_GENERATE_XML" ]; then
     $GENERATOR_SCRIPT --verbose $FORCE_GENERATE_XML --output-dir $OUTPUT_DIR \
         --notice-type "$NOTICE_TYPE" --notify-interval "$NOTIFY_INTERVAL" \
         --end-date "$END_DATE" --event-def $EVENT_DEF --event-tag $NOTICE_TAG $FOR_EMAIL \
-        --window "$WINDOW" --file-date "$FILE_DATE"
+        $FOR_TEXT --window "$WINDOW" --file-date "$FILE_DATE"
 
     if [ $? != 0 ]; then
         set -e

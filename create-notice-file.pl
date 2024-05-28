@@ -40,6 +40,7 @@ my $core_type;
 my $usr_field; # typically 'usr', sometimes 'id'
 my $output_dir;
 my $for_email;
+my $for_text;
 my $notice_type;
 my $notify_interval;
 my $force;
@@ -126,6 +127,11 @@ Options:
 
     --for-email
         If set, the script will confirm each patron has an email address
+        before adding to the XML file.  Also, the XML content will not
+        include patron address information, since it's not needed.
+
+   --for-text
+        If set, the script will confirm each patron has a text number
         before adding to the XML file.  Also, the XML content will not
         include patron address information, since it's not needed.
 
@@ -351,6 +357,20 @@ sub collect_user_and_targets {
         return 0;
     }
 
+    if ($for_text) {
+        my $set = $e->search_actor_user_setting({
+            usr => $user_id, name => 'opac.default_sms_notify'})->[0];
+
+        if ($set) {
+            $ctx->{text_number} = OpenSRF::Utils::JSON->JSON2perl($set->value);
+        } else {
+            announce('info',
+                "Skipping TXT notice for lack of TXT number. patron=$user_id");
+            return 0;
+        }
+
+    }
+
     if ($core_type eq 'circ') { # CIRCULATIONS
 
         my $circs = $ctx->{circulations} =
@@ -372,8 +392,13 @@ sub collect_user_and_targets {
 
     } elsif ($core_type eq 'ahr') { # HOLDS
 
+        my $q = {id => $target_ids};
+        if ($for_text) {
+            $q->{"-and"} = [{sms_notify => {"-not" => undef}}, {sms_notify => {"!=" => ""}}];
+        }
+
         my $holds = $ctx->{holds} =
-            $e->search_action_hold_request([{id => $target_ids}, $hold_flesh]);
+            $e->search_action_hold_request([$q, $hold_flesh]);
 
         return 0 unless @$holds;
 
@@ -498,6 +523,7 @@ GetOptions(
     'event-tag=s'       => \$event_tag,
     'output-dir=s'      => \$output_dir,
     'for-email'         => \$for_email,
+    'for-text'          => \$for_text,
     'notice-type=s'     => \$notice_type,
     'notify-interval=s' => \$notify_interval,
     'force'             => \$force,
