@@ -26,7 +26,7 @@ set -eu
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" 
 END_DATE=$(date +'%F');
 FILE_DATE=""
-SCP_DEST="my-account@sftp.exmaple.com:incoming"
+SCP_DEST="-i /home/opensrf/.ssh/prod_rsa cwmars@sftp2.uniqueic.com:cust2unique"
 AT_FILTERS="/openils/conf/a_t_filters/"
 WINDOW=""
 SKIP_ACTION_TRIGGER=""
