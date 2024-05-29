@@ -29,7 +29,7 @@ if [ -n "$FILE_DATE" ]; then
     FILE_NAME="${NOTICE_TAG}-${FILE_DATE}.xml"
 else
     FILE_NAME="${NOTICE_TAG}-${END_DATE}.xml"
-fi;
+fi
 
 # remove filename colons
 FILE_NAME=$(echo $FILE_NAME | sed s/://g)
@@ -42,15 +42,15 @@ function announce {
 
 if [ $(whoami) != 'opensrf' ]; then
     announce "Run me as 'opensrf'"
-    exit 1;
-fi;
+    exit 1
+fi
 
 if [ -z "$SKIP_ACTION_TRIGGER" ]; then
 
     announce "Processing A/T Events for $GRANULARITY"
 
     $AT_BASE_COMMAND $PROCESS_HOOKS $CUSTOM_FILTERS --run-pending \
-        --granularity $GRANULARITY --granularity-only;
+        --granularity $GRANULARITY --granularity-only
 fi
 
 if [ -z "$NO_GENERATE_XML" -o "$FORCE_GENERATE_XML" ]; then
@@ -65,36 +65,36 @@ if [ -z "$NO_GENERATE_XML" -o "$FORCE_GENERATE_XML" ]; then
 
     if [ $? != 0 ]; then
         set -e
-        announce "Notice generation failed for def=$EVENT_DEF => $NOTICE_TAG";
-        exit 1;
-    fi;
+        announce "Notice generation failed for def=$EVENT_DEF => $NOTICE_TAG"
+        exit 1
+    fi
 
     set -e
 
-    announce "Notice generation completed for def=$EVENT_DEF => $NOTICE_TAG";
+    announce "Notice generation completed for def=$EVENT_DEF => $NOTICE_TAG"
 
-    FILE_SIZE=$(stat --format=%s "$LOCAL_FILE");
+    FILE_SIZE=$(stat --format=%s "$LOCAL_FILE")
 
     if [ $FILE_SIZE == 0 ]; then
-        announce "No notices to generate for def=$EVENT_DEF => $NOTICE_TAG";
+        announce "No notices to generate for def=$EVENT_DEF => $NOTICE_TAG"
     else
-        announce "Generated $FILE_SIZE bytes for notice def=$EVENT_DEF => $NOTICE_TAG";
-    fi;
+        announce "Generated $FILE_SIZE bytes for notice def=$EVENT_DEF => $NOTICE_TAG"
+    fi
 
-fi;
+fi
 
 
 if [ -n "$SEND_XML" ]; then
 
-    FILE_SIZE=$(stat --format=%s "$LOCAL_FILE");
+    FILE_SIZE=$(stat --format=%s "$LOCAL_FILE")
 
     announce "SCP'ing [size=$FILE_SIZE] $LOCAL_FILE => $SCP_DEST/$FILE_NAME"
     scp "$LOCAL_FILE" "$SCP_DEST/$FILE_NAME"
 
     if [ $? == 0 ]; then
-        announce "SCP Succeeded for $FILE_NAME";
+        announce "SCP Succeeded for $FILE_NAME"
     else
-        announce "SCP Failed for $FILE_NAME";
-    fi;
-fi;
+        announce "SCP Failed for $FILE_NAME"
+    fi
+fi
 

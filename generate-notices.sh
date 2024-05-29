@@ -24,7 +24,7 @@ source ~/.bashrc
 set -eu
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" 
-END_DATE=$(date +'%F');
+END_DATE=$(date +'%F')
 FILE_DATE=""
 SCP_DEST="my-account@sftp.exmaple.com:incoming"
 AT_FILTERS="/openils/conf/a_t_filters/"
@@ -102,14 +102,14 @@ while [ "$#" -gt 0 ]; do
         '--window') WINDOW="$2"; shift;;
         '--help') usage;;
         *) echo "Unknown parameter: $1"; usage;;
-    esac;
-    shift;
+    esac
+    shift
 done
 
 if [ -z "$GRANULARITY" ]; then
     echo "--granularity required"
-    exit 1;
-fi;
+    exit 1
+fi
 
 # Our support scripts live in the same directory as us.
 cd "$SCRIPT_DIR"
@@ -164,9 +164,9 @@ case $GRANULARITY in
 
     *)
         echo "No such granularity: '$GRANULARITY'"
-        exit 1;
+        exit 1
         ;;
-esac;
+esac
 
 echo "Processing granularity $GRANULARITY"
 echo "EVENT_DEF=$EVENT_DEF"
