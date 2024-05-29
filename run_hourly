@@ -6,7 +6,7 @@ EXE=${0%/*}/generate-notices.sh
 $EXE --granularity messagebee-hold-ready-sms --send-xml --window "1 hours" --end-date "$(date +'%FT%H:%M:%S')"
 
 # Curbside Offer SMS Notification
-$EXE --granularity messagebee-curbside-offer-sms --send-xml --window "1 hours" --end-date "$(date +'%FT%H:%M:%S')"
+# $EXE --granularity messagebee-curbside-offer-sms --send-xml --window "1 hours" --end-date "$(date +'%FT%H:%M:%S')"
 
 # Curbside Confirmation SMS Notification
-$EXE --granularity messagebee-curbside-confirm-sms --send-xml --window "1 hours" --end-date "$(date +'%FT%H:%M:%S')"
+# $EXE --granularity messagebee-curbside-confirm-sms --send-xml --window "1 hours" --end-date "$(date +'%FT%H:%M:%S')"
