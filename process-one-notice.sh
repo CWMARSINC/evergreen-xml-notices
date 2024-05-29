@@ -88,13 +88,17 @@ if [ -n "$SEND_XML" ]; then
 
     FILE_SIZE=$(stat --format=%s "$LOCAL_FILE")
 
-    announce "SCP'ing [size=$FILE_SIZE] $LOCAL_FILE => $SCP_DEST/$FILE_NAME"
-    scp "$LOCAL_FILE" "$SCP_DEST/$FILE_NAME"
-
-    if [ $? == 0 ]; then
-        announce "SCP Succeeded for $FILE_NAME"
+    if [ $FILE_SIZE == 0 ]; then
+        announce "No content to deliver for $LOCAL_FILE"
     else
-        announce "SCP Failed for $FILE_NAME"
+        announce "SCP'ing [size=$FILE_SIZE] $LOCAL_FILE => $SCP_DEST/$FILE_NAME"
+        scp "$LOCAL_FILE" "$SCP_DEST/$FILE_NAME"
+
+        if [ $? == 0 ]; then
+            announce "SCP Succeeded for $FILE_NAME"
+        else
+            announce "SCP Failed for $FILE_NAME"
+        fi
     fi
 fi
 
