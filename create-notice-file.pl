@@ -402,6 +402,8 @@ sub collect_user_and_targets {
 
         return 0 unless @$holds;
 
+        create_hold_notifications($holds);
+
         $ctx->{context_org} = $ctx->{holds}->[0]->pickup_lib;
 
     } elsif ($core_type eq 'ausp') { # TRANSACTIONS
@@ -512,6 +514,26 @@ sub check_params {
 
     announce('info', "Found " . $def->name .
         " with core type '$core_type' and usr field '$usr_field'");
+}
+
+sub create_hold_notifications {
+    my $holds = shift;
+    my $ed = new_editor(xact => 1);
+    my $rv = 0;
+    for my $hold (@$holds) {
+        my $notify = Fielmapper::action::hold_notification->new;
+        $notify->hold($hold->id);
+        $notify->method(($for_text) ? 'SendSMS' : 'SendEmail');
+        if ($ed->create_action_hold_notification($notify)) {
+            $rv++;
+        } else {
+            $ed->rollback;
+            return 0;
+        }
+    }
+    return $rv if $ed->commit;
+    $ed->rollback;
+    return 0;
 }
 
 # --------------------------------------------------------------------------
