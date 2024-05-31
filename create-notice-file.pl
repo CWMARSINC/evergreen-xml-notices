@@ -518,7 +518,7 @@ sub check_params {
 
 sub create_hold_notifications {
     my $holds = shift;
-    my $ed = new_editor(xact => 1);
+    my $ed = OpenILS::Utils::CStoreEditor->new(xact => 1);
     my $rv = 0;
     for my $hold (@$holds) {
         my $notify = Fieldmapper::action::hold_notification->new;
