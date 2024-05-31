@@ -521,7 +521,7 @@ sub create_hold_notifications {
     my $ed = new_editor(xact => 1);
     my $rv = 0;
     for my $hold (@$holds) {
-        my $notify = Fielmapper::action::hold_notification->new;
+        my $notify = Fieldmapper::action::hold_notification->new;
         $notify->hold($hold->id);
         $notify->method(($for_text) ? 'SendSMS' : 'SendEmail');
         if ($ed->create_action_hold_notification($notify)) {
