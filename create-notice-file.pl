@@ -363,6 +363,7 @@ sub collect_user_and_targets {
 
         if ($set) {
             $ctx->{text_number} = OpenSRF::Utils::JSON->JSON2perl($set->value);
+            $ctx->{text_number} =~ s/[^0-9]//g;
         } else {
             announce('info',
                 "Skipping TXT notice for lack of TXT number. patron=$user_id");
