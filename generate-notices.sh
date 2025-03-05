@@ -149,7 +149,7 @@ case $GRANULARITY in
         ;;
 
     'messagebee-curbside-offer-sms')
-        PROCES_HOOKS="Y"
+        PROCES_HOOKS="--process-hooks"
         export FOR_TEXT="--for-text"
         export EVENT_DEF=530
         export NOTICE_TAG=curbside-schedule
@@ -157,7 +157,7 @@ case $GRANULARITY in
         ;;
 
     'messagebee-curbside-confirm-sms')
-        PROCESS_HOOKS="Y"
+        PROCESS_HOOKS="--process-hooks"
         export FOR_TEXT="--for-text"
         export EVENT_DEF=531
         export NOTICE_TAG=curbside-confirmed
