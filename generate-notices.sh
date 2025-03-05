@@ -151,15 +151,15 @@ case $GRANULARITY in
     'messagebee-curbside-offer-sms')
         export FOR_TEXT="--for-text"
         export EVENT_DEF=530
-        export NOTICE_TAG=curbside-offer
-        export NOTICE_TYPE="curbside offer"
+        export NOTICE_TAG=curbside-schedule
+        export NOTICE_TYPE="curbside shedule"
         ;;
 
     'messagebee-curbside-confirm-sms')
         export FOR_TEXT="--for-text"
         export EVENT_DEF=531
-        export NOTICE_TAG=curbside-confirm
-        export NOTICE_TYPE="curbside confirm"
+        export NOTICE_TAG=curbside-confirmed
+        export NOTICE_TYPE="curbside confirmed"
         ;;
 
     *)
